@@ -12,3 +12,15 @@ services:
       - ./frontend:/frontend
     tty: true
     command: 'yarn start'
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.dev
+      target: development
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend:/backend
+    tty: true
+    command: 'sh gradlew bootRun'
